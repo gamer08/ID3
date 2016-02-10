@@ -286,7 +286,7 @@ public class Id3Modifie
       classCounts[(int) inst.classValue()]++;
     }
     double entropy = 0;
-    double multiplier = Math.pow((Math.pow(2.0,1.0-alpha)),-1.0);
+    double multiplier = Math.pow((Math.pow(2.0,1.0-m_Alpha)),-1.0);
     double numInstances = (double) data.numInstances();
     for (int j = 0; j < data.numClasses(); j++) {
       if (classCounts[j] > 0) {
