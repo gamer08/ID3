@@ -39,50 +39,14 @@ import weka.core.TechnicalInformation.Type;
 
 import java.util.Enumeration;
 
-/**
- <!-- globalinfo-start -->
- * Class for constructing an unpruned decision tree based on the ID3 algorithm. Can only deal with nominal attributes. No missing values allowed. Empty leaves may result in unclassified instances. For more information see: <br/>
- * <br/>
- * R. Quinlan (1986). Induction of decision trees. Machine Learning. 1(1):81-106.
- * <p/>
- <!-- globalinfo-end -->
- *
- <!-- technical-bibtex-start -->
- * BibTeX:
- * <pre>
- * &#64;article{Quinlan1986,
- *    author = {R. Quinlan},
- *    journal = {Machine Learning},
- *    number = {1},
- *    pages = {81-106},
- *    title = {Induction of decision trees},
- *    volume = {1},
- *    year = {1986}
- * }
- * </pre>
- * <p/>
- <!-- technical-bibtex-end -->
- *
- <!-- options-start -->
- * Valid options are: <p/>
- * 
- * <pre> -D
- *  If set, classifier is run in debug mode and
- *  may output additional info to the console</pre>
- * 
- <!-- options-end -->
- *
- * @author Eibe Frank (eibe@cs.waikato.ac.nz)
- * @version $Revision: 6404 $ 
- */
-public class Id3Modifie 
-  extends Classifier 
+public class Id3Modifie
+  extends Classifier
   implements TechnicalInformationHandler, Sourcable {
 
   /** for serialization */
-  static final long serialVersionUID = -2693678647096322561L;
-  
-  /** The node's successors. */ 
+  static final long serialVersionUID = -269348648096322561L;
+
+  /** The node's successors. */
   private Id3Modifie[] m_Successors;
 
   /** Attribute used for splitting. */
@@ -96,6 +60,11 @@ public class Id3Modifie
 
   /** Class attribute of dataset. */
   private Attribute m_ClassAttribute;
+
+  /*parameter for Charvat Entropy*/
+  private double m_Alpha;
+
+
 
   /**
    * Returns a string describing the classifier.
@@ -111,24 +80,23 @@ public class Id3Modifie
   }
 
   /**
-   * Returns an instance of a TechnicalInformation object, containing 
+   * Returns an instance of a TechnicalInformation object, containing
    * detailed information about the technical background of this class,
    * e.g., paper reference or book this class is based on.
-   * 
+   *
    * @return the technical information about this class
    */
   public TechnicalInformation getTechnicalInformation() {
     TechnicalInformation 	result;
-    
+
     result = new TechnicalInformation(Type.ARTICLE);
-    result.setValue(Field.AUTHOR, "R. Quinlan");
-    result.setValue(Field.YEAR, "1986");
-    result.setValue(Field.TITLE, "Induction of decision trees");
-    result.setValue(Field.JOURNAL, "Machine Learning");
+    result.setValue(Field.AUTHOR, "Havrda and Charvat");
+    result.setValue(Field.YEAR, "2012");
+    result.setValue(Field.TITLE, "Intrusion Detection and Classification Using Improved ID3 Algorithm of Data Mining");
+    result.setValue(Field.JOURNAL, "International Journal of Advanced Research in Computer Engineering & Technology");
     result.setValue(Field.VOLUME, "1");
     result.setValue(Field.NUMBER, "1");
-    result.setValue(Field.PAGES, "81-106");
-    
+
     return result;
   }
 
@@ -150,7 +118,7 @@ public class Id3Modifie
 
     // instances
     result.setMinimumNumberInstances(0);
-    
+
     return result;
   }
 
@@ -168,7 +136,7 @@ public class Id3Modifie
     // remove instances with missing class
     data = new Instances(data);
     data.deleteWithMissingClass();
-    
+
     makeTree(data);
   }
 
@@ -196,8 +164,8 @@ public class Id3Modifie
       infoGains[att.index()] = computeInfoGain(data, att);
     }
     m_Attribute = data.attribute(Utils.maxIndex(infoGains));
-    
-    // Make leaf if information gain is zero. 
+
+    // Make leaf if information gain is zero.
     // Otherwise create successors.
     if (Utils.eq(infoGains[m_Attribute.index()], 0)) {
       m_Attribute = null;
@@ -227,7 +195,7 @@ public class Id3Modifie
    * @return the classification
    * @throws NoSupportForMissingValuesException if instance has missing values
    */
-  public double classifyInstance(Instance instance) 
+  public double classifyInstance(Instance instance)
     throws NoSupportForMissingValuesException {
 
     if (instance.hasMissingValue()) {
@@ -249,7 +217,7 @@ public class Id3Modifie
    * @return the class distribution for the given instance
    * @throws NoSupportForMissingValuesException if instance has missing values
    */
-  public double[] distributionForInstance(Instance instance) 
+  public double[] distributionForInstance(Instance instance)
     throws NoSupportForMissingValuesException {
 
     if (instance.hasMissingValue()) {
@@ -258,7 +226,7 @@ public class Id3Modifie
     }
     if (m_Attribute == null) {
       return m_Distribution;
-    } else { 
+    } else {
       return m_Successors[(int) instance.value(m_Attribute)].
         distributionForInstance(instance);
     }
@@ -285,13 +253,13 @@ public class Id3Modifie
    * @return the information gain for the given attribute and data
    * @throws Exception if computation fails
    */
-  private double computeInfoGain(Instances data, Attribute att) 
+  private double computeInfoGain(Instances data, Attribute att)
     throws Exception {
 
     double infoGain = computeEntropy(data);
     Instances[] splitData = splitData(data, att);
     for (int j = 0; j < att.numValues(); j++) {
-      if (splitData[j].numInstances() > 0) 
+      if (splitData[j].numInstances() > 0)
       {
         infoGain -= ((double) splitData[j].numInstances() /
                      (double) data.numInstances()) *
@@ -303,14 +271,14 @@ public class Id3Modifie
 
   /**
    * Computes the entropy of a dataset.
-   * 
+   *
    * @param data the data for which entropy is to be computed
    * @return the entropy of the data's class distribution
    * @throws Exception if computation fails
    */
-  private double computeEntropy(Instances data) throws Exception 
+  private double computeEntropy(Instances data) throws Exception
   {
-
+    m_Alpha = 0.5;
     double [] classCounts = new double[data.numClasses()];
     Enumeration instEnum = data.enumerateInstances();
     while (instEnum.hasMoreElements()) {
@@ -318,13 +286,15 @@ public class Id3Modifie
       classCounts[(int) inst.classValue()]++;
     }
     double entropy = 0;
+    double multiplier = Math.pow((Math.pow(2.0,1.0-alpha)),-1.0);
+    double numInstances = (double) data.numInstances();
     for (int j = 0; j < data.numClasses(); j++) {
       if (classCounts[j] > 0) {
-        entropy -= classCounts[j] * Utils.log2(classCounts[j]);
+        entropy += Math.pow(classCounts[j]/numInstances,m_Alpha) - 1.0;
       }
     }
-    entropy /= (double) data.numInstances();
-    return entropy + Utils.log2(data.numInstances());
+    entropy *= multiplier;
+    return entropy;
   }
 
   /**
@@ -360,13 +330,13 @@ public class Id3Modifie
   private String toString(int level) {
 
     StringBuffer text = new StringBuffer();
-    
+
     if (m_Attribute == null) {
       if (Instance.isMissingValue(m_ClassValue)) {
         text.append(": null");
       } else {
         text.append(": " + m_ClassAttribute.value((int) m_ClassValue));
-      } 
+      }
     } else {
       for (int j = 0; j < m_Attribute.numValues(); j++) {
         text.append("\n");
@@ -382,7 +352,7 @@ public class Id3Modifie
 
   /**
    * Adds this tree recursively to the buffer.
-   * 
+   *
    * @param id          the unqiue id for the method
    * @param buffer      the buffer to add the source code to
    * @return            the last ID being used
@@ -393,10 +363,10 @@ public class Id3Modifie
     int                 i;
     int                 newID;
     StringBuffer[]      subBuffers;
-    
+
     buffer.append("\n");
     buffer.append("  protected static double node" + id + "(Object[] i) {\n");
-    
+
     // leaf?
     if (m_Attribute == null) {
       result = id;
@@ -413,7 +383,7 @@ public class Id3Modifie
     } else {
       buffer.append("    checkMissing(i, " + m_Attribute.index() + ");\n\n");
       buffer.append("    // " + m_Attribute.name() + "\n");
-      
+
       // subtree calls
       subBuffers = new StringBuffer[m_Attribute.numValues()];
       newID = id;
@@ -424,7 +394,7 @@ public class Id3Modifie
         if (i > 0) {
           buffer.append("else ");
         }
-        buffer.append("if (((String) i[" + m_Attribute.index() 
+        buffer.append("if (((String) i[" + m_Attribute.index()
             + "]).equals(\"" + m_Attribute.value(i) + "\"))\n");
         buffer.append("      return node" + newID + "(i);\n");
 
@@ -441,13 +411,13 @@ public class Id3Modifie
         buffer.append(subBuffers[i].toString());
       }
       subBuffers = null;
-      
+
       result = newID;
     }
-    
+
     return result;
   }
-  
+
   /**
    * Returns a string that describes the classifier as source. The
    * classifier will be contained in a class with the given name (there may
@@ -468,7 +438,7 @@ public class Id3Modifie
   public String toSource(String className) throws Exception {
     StringBuffer        result;
     int                 id;
-    
+
     result = new StringBuffer();
 
     result.append("class " + className + " {\n");
@@ -486,10 +456,10 @@ public class Id3Modifie
 
     return result.toString();
   }
-  
+
   /**
    * Returns the revision string.
-   * 
+   *
    * @return		the revision
    */
   public String getRevision() {
