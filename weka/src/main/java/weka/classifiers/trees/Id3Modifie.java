@@ -295,7 +295,7 @@ public class Id3Modifie
     }
     entropy *= multiplier;
     entropy /= (double) data.numInstances();
-    return entropy;
+    return entropy + Utils.log2(data.numInstances());
   }
 
   /**
