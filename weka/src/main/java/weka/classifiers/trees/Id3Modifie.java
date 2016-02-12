@@ -294,6 +294,7 @@ public class Id3Modifie
       }
     }
     entropy *= multiplier;
+    entropy /= (double) data.numInstances();
     return entropy;
   }
 
