@@ -22,6 +22,11 @@
 
 package weka.classifiers.trees;
 
+import weka.classifiers.*;
+import weka.core.*;
+import weka.classifiers.trees.adtree.ReferenceInstances;
+import java.util.*;
+import java.io.*;
 import weka.classifiers.Classifier;
 import weka.classifiers.Sourcable;
 import weka.core.Attribute;
@@ -62,9 +67,99 @@ public class Id3Modifie
   private Attribute m_ClassAttribute;
 
   /*parameter for Charvat Entropy*/
-  private double m_Alpha;
+ // protected double m_Alpha;
+  
+  // options
+  protected double m_Alpha = 0.5;
+  /** option handling  ******************************************************************/
+  
+   /**
+   * @return tip text for this property suitable for
+   * displaying in the explorer/experimenter gui
+   */
+  public String alphaTipText() {
 
+    return "The alpha value to calculate the charvat entropy";
+  }
+  
+  /**
+   * Gets the alpha value.
+   *
+   * @return the alpha value
+   */
+  public double getAlpha() {
+    
+    return m_Alpha;
+  }
+  
+   /**
+   * Sets the alpha value.
+   *
+   * @param a the alpha value to use
+   */
+  public void setAlpha(double a) {
+    
+    m_Alpha = a; 
+  }
 
+  /**
+   * Returns an enumeration describing the available options.
+   *
+   * @return an enumeration of all the available options
+   */
+  public Enumeration listOptions() {
+    
+    Vector newVector = new Vector(1);				
+	newVector.addElement(new Option(
+				    "\tAlpha value.\n"
+				    +"\t(Default = 0.5)",
+				    "A", 1,"-A <alpha>"));
+
+    Enumeration enu = super.listOptions();
+    while (enu.hasMoreElements()) {
+      newVector.addElement(enu.nextElement());
+    }
+
+    return newVector.elements();
+  }
+
+  /**
+   * Parses a given list of options. Valid options are:<p>
+   *
+   * -A num <br>
+   * Set the alpha value
+   * (default 0.5) <p>
+   *
+   * @param options the list of options as an array of strings
+   * @exception Exception if an option is not supported
+   */
+  public void setOptions(String[] options) throws Exception {
+   
+	String bString = Utils.getOption('A', options);
+    if (bString.length() != 0) setAlpha(Double.parseDouble(bString));
+
+    super.setOptions(options);
+
+    Utils.checkForRemainingOptions(options);
+  }
+
+  /**
+   * Gets the current settings of ADTree.
+   *
+   * @return an array of strings suitable for passing to setOptions()
+   */
+  public String[] getOptions() {
+    
+    String[] options = new String[2  + super.getOptions().length];
+
+    int current = 0;
+	options[current++] = "-A"; options[current++] = "" + getAlpha();
+	
+    System.arraycopy(super.getOptions(), 0, options, current, super.getOptions().length);
+
+    while (current < options.length) options[current++] = "";
+    return options;
+  }
 
   /**
    * Returns a string describing the classifier.
