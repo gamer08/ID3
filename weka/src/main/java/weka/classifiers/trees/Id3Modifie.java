@@ -21,7 +21,6 @@
  */
 
 package weka.classifiers.trees;
-
 import weka.classifiers.*;
 import weka.core.*;
 import weka.classifiers.trees.adtree.ReferenceInstances;
@@ -68,11 +67,11 @@ public class Id3Modifie
 
   /*parameter for Charvat Entropy*/
  // protected double m_Alpha;
-  
+
   // options
   protected double m_Alpha = 0.5;
   /** option handling  ******************************************************************/
-  
+
    /**
    * @return tip text for this property suitable for
    * displaying in the explorer/experimenter gui
@@ -81,25 +80,25 @@ public class Id3Modifie
 
     return "The alpha value to calculate the charvat entropy";
   }
-  
+
   /**
    * Gets the alpha value.
    *
    * @return the alpha value
    */
   public double getAlpha() {
-    
+
     return m_Alpha;
   }
-  
+
    /**
    * Sets the alpha value.
    *
    * @param a the alpha value to use
    */
   public void setAlpha(double a) {
-    
-    m_Alpha = a; 
+
+    m_Alpha = a;
   }
 
   /**
@@ -108,8 +107,8 @@ public class Id3Modifie
    * @return an enumeration of all the available options
    */
   public Enumeration listOptions() {
-    
-    Vector newVector = new Vector(1);				
+
+    Vector newVector = new Vector(1);
 	newVector.addElement(new Option(
 				    "\tAlpha value.\n"
 				    +"\t(Default = 0.5)",
@@ -134,7 +133,7 @@ public class Id3Modifie
    * @exception Exception if an option is not supported
    */
   public void setOptions(String[] options) throws Exception {
-   
+
 	String bString = Utils.getOption('A', options);
     if (bString.length() != 0) setAlpha(Double.parseDouble(bString));
 
@@ -149,12 +148,12 @@ public class Id3Modifie
    * @return an array of strings suitable for passing to setOptions()
    */
   public String[] getOptions() {
-    
+
     String[] options = new String[2  + super.getOptions().length];
 
     int current = 0;
 	options[current++] = "-A"; options[current++] = "" + getAlpha();
-	
+
     System.arraycopy(super.getOptions(), 0, options, current, super.getOptions().length);
 
     while (current < options.length) options[current++] = "";
@@ -373,7 +372,6 @@ public class Id3Modifie
    */
   private double computeEntropy(Instances data) throws Exception
   {
-    m_Alpha = 0.5;
     double [] classCounts = new double[data.numClasses()];
     Enumeration instEnum = data.enumerateInstances();
     while (instEnum.hasMoreElements()) {
@@ -381,7 +379,7 @@ public class Id3Modifie
       classCounts[(int) inst.classValue()]++;
     }
     double entropy = 0;
-    double multiplier = Math.pow((Math.pow(2.0,1.0-m_Alpha)),-1.0);
+    double multiplier = 1.0/(Math.pow(2.0,1.0-m_Alpha)-1.0);
     double numInstances = (double) data.numInstances();
     for (int j = 0; j < data.numClasses(); j++) {
       if (classCounts[j] > 0) {

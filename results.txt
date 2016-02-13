@@ -1,0 +1,291 @@
+results
+
+Pour 30% des donnés pris aléatoirement en split 66%
+
+
+ID3
+Time taken to build model: 9.65 seconds
+temps total 17.472 sec
+=== Evaluation on test split ===
+=== Summary ===
+
+Correctly Classified Instances       49256               98.7946 %
+Incorrectly Classified Instances       105                0.2106 %
+Kappa statistic                          0.9934
+Mean absolute error                      0.0003
+Root mean squared error                  0.013 
+Relative absolute error                  1.017  %
+Root relative squared error             11.0303 %
+UnClassified Instances                 496                0.9948 %
+Total Number of Instances            49857     
+
+=== Detailed Accuracy By Class ===
+
+               TP Rate   FP Rate   Precision   Recall  F-Measure   ROC Area  Class
+                 0.998     0.001      0.996     0.998     0.997      0.974    normal.
+                 0.25      0          0.5       0.25      0.333      0.583    U2R.
+                 0         0          0         0         0          ?        loadmodule.
+                 0         0          0         0         0          ?        perl.
+                 0.999     0.005      0.999     0.999     0.999      1        DoS.
+                 0         0          0         0         0          ?        smurf.
+                 0.824     0          0.875     0.824     0.848      0.882    R2L.
+                 0         0          0         0         0          ?        pod.
+                 0         0          0         0         0          ?        teardrop.
+                 0.889     0          0.977     0.889     0.931      0.992    Probing.
+                 0         0          0         0         0          ?        ipsweep.
+                 0         0          0         0         0          ?        land.
+                 0         0          0         0         0          ?        ftp_write.
+                 0         0          0         0         0          ?        back.
+                 0         0          0         0         0          ?        imap.
+                 0         0          0         0         0          ?        satan.
+                 0         0          0         0         0          ?        phf.
+                 0         0          0         0         0          ?        nmap.
+                 0         0          0         0         0          ?        multihop.
+                 0         0          0         0         0          ?        warezmaster.
+                 0         0          0         0         0          ?        warezclient.
+                 0         0          0         0         0          ?        spy.
+                 0         0          0         0         0          ?        rootkit.
+Weighted Avg.    0.998     0.004      0.998     0.998     0.998      0.995
+
+=== Confusion Matrix ===
+
+     a     b     c     d     e     f     g     h     i     j     k     l     m     n     o     p     q     r     s     t     u     v     w   <-- classified as
+  9273     1     0     0     2     0    12     0     0     1     0     0     0     0     0     0     0     0     0     0     0     0     0 |     a = normal.
+     3     1     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     b = U2R.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     c = loadmodule.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     d = perl.
+    12     0     0     0 39515     0     0     0     0     8     0     0     0     0     0     0     0     0     0     0     0     0     0 |     e = DoS.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     f = smurf.
+    18     0     0     0     0     0    84     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     g = R2L.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     h = pod.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     i = teardrop.
+     0     0     0     0    48     0     0     0     0   383     0     0     0     0     0     0     0     0     0     0     0     0     0 |     j = Probing.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     k = ipsweep.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     l = land.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     m = ftp_write.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     n = back.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     o = imap.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     p = satan.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     q = phf.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     r = nmap.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     s = multihop.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     t = warezmaster.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     u = warezclient.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     v = spy.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     w = rootkit.
+
+
+Alpha 0.5
+Time taken to build model: 5.47 seconds
+
+=== Evaluation on test split ===
+=== Summary ===
+
+Correctly Classified Instances       39548               79.3229 %
+Incorrectly Classified Instances     10309               20.6771 %
+Kappa statistic                          0.0015
+Mean absolute error                      0.0289
+Root mean squared error                  0.1202
+Relative absolute error                 99.8848 %
+Root relative squared error             99.9638 %
+Total Number of Instances            49857     
+
+=== Detailed Accuracy By Class ===
+
+               TP Rate   FP Rate   Precision   Recall  F-Measure   ROC Area  Class
+                 0         0          0         0         0          0.5      normal.
+                 0.5       0          0.429     0.5       0.462      0.75     U2R.
+                 0         0          0         0         0          ?        loadmodule.
+                 0         0          0         0         0          ?        perl.
+                 1         0.999      0.793     1         0.885      0.501    DoS.
+                 0         0          0         0         0          ?        smurf.
+                 0.036     0          1         0.036     0.07       0.518    R2L.
+                 0         0          0         0         0          ?        pod.
+                 0         0          0         0         0          ?        teardrop.
+                 0         0          0         0         0          0.5      Probing.
+                 0         0          0         0         0          ?        ipsweep.
+                 0         0          0         0         0          ?        land.
+                 0         0          0         0         0          ?        ftp_write.
+                 0         0          0         0         0          ?        back.
+                 0         0          0         0         0          ?        imap.
+                 0         0          0         0         0          ?        satan.
+                 0         0          0         0         0          ?        phf.
+                 0         0          0         0         0          ?        nmap.
+                 0         0          0         0         0          ?        multihop.
+                 0         0          0         0         0          ?        warezmaster.
+                 0         0          0         0         0          ?        warezclient.
+                 0         0          0         0         0          ?        spy.
+                 0         0          0         0         0          ?        rootkit.
+Weighted Avg.    0.793     0.792      0.631     0.793     0.702      0.501
+
+=== Confusion Matrix ===
+
+     a     b     c     d     e     f     g     h     i     j     k     l     m     n     o     p     q     r     s     t     u     v     w   <-- classified as
+     0     4     0     0  9762     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     a = normal.
+     0     3     0     0     3     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     b = U2R.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     c = loadmodule.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     d = perl.
+     0     0     0     0 39541     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     e = DoS.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     f = smurf.
+     0     0     0     0   106     0     4     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     g = R2L.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     h = pod.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     i = teardrop.
+     0     0     0     0   434     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     j = Probing.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     k = ipsweep.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     l = land.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     m = ftp_write.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     n = back.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     o = imap.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     p = satan.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     q = phf.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     r = nmap.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     s = multihop.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     t = warezmaster.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     u = warezclient.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     v = spy.
+
+
+Alpha 0.5
+Time taken to build model: 25.28 seconds
+
+=== Evaluation on test split ===
+=== Summary ===
+
+Correctly Classified Instances       43894               88.0398 %
+Incorrectly Classified Instances        91                0.1825 %
+Kappa statistic                          0.9887
+Mean absolute error                      0.0003
+Root mean squared error                  0.0127
+Relative absolute error                  1.4225 %
+Root relative squared error             14.2951 %
+UnClassified Instances                5872               11.7777 %
+Total Number of Instances            49857     
+
+=== Detailed Accuracy By Class ===
+
+               TP Rate   FP Rate   Precision   Recall  F-Measure   ROC Area  Class
+                 0.996     0          0.995     0.996     0.996      0.7      normal.
+                 1         0          1         1         1          0.583    U2R.
+                 0         0          0         0         0          ?        loadmodule.
+                 0         0          0         0         0          ?        perl.
+                 1         0.011      0.999     1         0.999      1        DoS.
+                 0         0          0         0         0          ?        smurf.
+                 0.91      0          0.862     0.91      0.885      0.868    R2L.
+                 0         0          0         0         0          ?        pod.
+                 0         0          0         0         0          ?        teardrop.
+                 0.885     0          0.976     0.885     0.928      0.971    Probing.
+                 0         0          0         0         0          ?        ipsweep.
+                 0         0          0         0         0          ?        land.
+                 0         0          0         0         0          ?        ftp_write.
+                 0         0          0         0         0          ?        back.
+                 0         0          0         0         0          ?        imap.
+                 0         0          0         0         0          ?        satan.
+                 0         0          0         0         0          ?        phf.
+                 0         0          0         0         0          ?        nmap.
+                 0         0          0         0         0          ?        multihop.
+                 0         0          0         0         0          ?        warezmaster.
+                 0         0          0         0         0          ?        warezclient.
+                 0         0          0         0         0          ?        spy.
+                 0         0          0         0         0          ?        rootkit.
+Weighted Avg.    0.998     0.01       0.998     0.998     0.998      0.972
+
+=== Confusion Matrix ===
+
+     a     b     c     d     e     f     g     h     i     j     k     l     m     n     o     p     q     r     s     t     u     v     w   <-- classified as
+  3934     0     0     0     2     0    13     0     0     1     0     0     0     0     0     0     0     0     0     0     0     0     0 |     a = normal.
+     0     1     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     b = U2R.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     c = loadmodule.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     d = perl.
+    11     0     0     0 39510     0     0     0     0     8     0     0     0     0     0     0     0     0     0     0     0     0     0 |     e = DoS.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     f = smurf.
+     8     0     0     0     0     0    81     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     g = R2L.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     h = pod.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     i = teardrop.
+     0     0     0     0    48     0     0     0     0   368     0     0     0     0     0     0     0     0     0     0     0     0     0 |     j = Probing.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     k = ipsweep.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     l = land.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     m = ftp_write.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     n = back.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     o = imap.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     p = satan.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     q = phf.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     r = nmap.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     s = multihop.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     t = warezmaster.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     u = warezclient.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     v = spy.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     w = rootkit.
+
+Alpha 0.1
+Time taken to build model: 25.28 seconds
+
+=== Evaluation on test split ===
+=== Summary ===
+
+Correctly Classified Instances       43894               88.0398 %
+Incorrectly Classified Instances        91                0.1825 %
+Kappa statistic                          0.9887
+Mean absolute error                      0.0003
+Root mean squared error                  0.0127
+Relative absolute error                  1.4225 %
+Root relative squared error             14.2951 %
+UnClassified Instances                5872               11.7777 %
+Total Number of Instances            49857     
+
+=== Detailed Accuracy By Class ===
+
+               TP Rate   FP Rate   Precision   Recall  F-Measure   ROC Area  Class
+                 0.996     0          0.995     0.996     0.996      0.7      normal.
+                 1         0          1         1         1          0.583    U2R.
+                 0         0          0         0         0          ?        loadmodule.
+                 0         0          0         0         0          ?        perl.
+                 1         0.011      0.999     1         0.999      1        DoS.
+                 0         0          0         0         0          ?        smurf.
+                 0.91      0          0.862     0.91      0.885      0.868    R2L.
+                 0         0          0         0         0          ?        pod.
+                 0         0          0         0         0          ?        teardrop.
+                 0.885     0          0.976     0.885     0.928      0.971    Probing.
+                 0         0          0         0         0          ?        ipsweep.
+                 0         0          0         0         0          ?        land.
+                 0         0          0         0         0          ?        ftp_write.
+                 0         0          0         0         0          ?        back.
+                 0         0          0         0         0          ?        imap.
+                 0         0          0         0         0          ?        satan.
+                 0         0          0         0         0          ?        phf.
+                 0         0          0         0         0          ?        nmap.
+                 0         0          0         0         0          ?        multihop.
+                 0         0          0         0         0          ?        warezmaster.
+                 0         0          0         0         0          ?        warezclient.
+                 0         0          0         0         0          ?        spy.
+                 0         0          0         0         0          ?        rootkit.
+Weighted Avg.    0.998     0.01       0.998     0.998     0.998      0.972
+
+=== Confusion Matrix ===
+
+     a     b     c     d     e     f     g     h     i     j     k     l     m     n     o     p     q     r     s     t     u     v     w   <-- classified as
+  3934     0     0     0     2     0    13     0     0     1     0     0     0     0     0     0     0     0     0     0     0     0     0 |     a = normal.
+     0     1     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     b = U2R.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     c = loadmodule.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     d = perl.
+    11     0     0     0 39510     0     0     0     0     8     0     0     0     0     0     0     0     0     0     0     0     0     0 |     e = DoS.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     f = smurf.
+     8     0     0     0     0     0    81     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     g = R2L.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     h = pod.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     i = teardrop.
+     0     0     0     0    48     0     0     0     0   368     0     0     0     0     0     0     0     0     0     0     0     0     0 |     j = Probing.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     k = ipsweep.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     l = land.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     m = ftp_write.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     n = back.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     o = imap.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     p = satan.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     q = phf.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     r = nmap.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     s = multihop.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     t = warezmaster.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     u = warezclient.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     v = spy.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     w = rootkit.
+
+
+
