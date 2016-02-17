@@ -379,16 +379,14 @@ public class Id3Modifie
       classCounts[(int) inst.classValue()]++;
     }
     double entropy = 0;
-    double multiplier = 1.0/(Math.pow(2.0,1.0-m_Alpha)-1.0);
     double numInstances = (double) data.numInstances();
     for (int j = 0; j < data.numClasses(); j++) {
       if (classCounts[j] > 0) {
-        entropy += Math.pow(classCounts[j]/numInstances,m_Alpha) - 1.0;
+        entropy += Math.pow((classCounts[j])/(double)data.numInstances(),alpha) - 1;
       }
     }
-    entropy *= multiplier;
-    entropy /= (double) data.numInstances();
-    return entropy + Utils.log2(data.numInstances());
+    entropy *= Math.pow((Math.pow(2,1-alpha)-1),-1);
+    return entropy;
   }
 
   /**
